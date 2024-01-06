@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "agenda",
-    "slug": "agenda",
+    "name": "Anota Aí",
+    "slug": "expo-agenda",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,13 +15,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mathiaslima.expoagenda"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mathiaslima.expoagenda"
     },
     "web": {
       "favicon": "./assets/favicon.png"
