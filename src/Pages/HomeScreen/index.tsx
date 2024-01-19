@@ -4,6 +4,8 @@ import { PageView } from "../../Components/PageView";
 import { List } from "../../Components/List";
 import { generateId, normalizeString } from "../../Functions/basics";
 import { useList } from "../../Stores/UseList";
+import { useRemoveItem } from "./hook/useRemoveItem";
+import { ConfirmationModal } from "../../Components/ConfirmationModal";
 
 export interface ItemProps {
   text: string;
@@ -14,6 +16,13 @@ export interface ItemProps {
 export function HomeScreen() {
   const { items, setItems } = useList();
   const [loading, setLoading] = useState(false);
+
+  const { 
+    onConfirmRemove, 
+    showRemoveModal, 
+    hideRemoveModal, 
+    isRemoveModalVisible 
+  } = useRemoveItem();
 
   const addItem = useCallback(() => {
     setLoading(true);
@@ -83,11 +92,16 @@ export function HomeScreen() {
             items={items}
             onChange={onChange}
             addItem={addItem}
-            removeItem={onRemove}
+            removeItem={showRemoveModal}
             onPress={onPress}
           />
         )}
       </PageView>
+      <ConfirmationModal
+        isVisible={isRemoveModalVisible}
+        onCancel={hideRemoveModal}
+        onConfirm={onConfirmRemove}
+      />
     </>
   );
 }
